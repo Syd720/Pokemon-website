@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<head></head>
+
+<body>
+
+    <div v-scope>
+        <h1>Pokemon website</h1>
+        <input v-model="pokemonName" placeholder="edit me">
+        <button @click="findPokemon(pokemonName)">submit</button>
+        <br>
+        <img :src="imageSrc">
+        
+    </div>
+</body>
+<script type="module">
+    import { createApp } from 'https://unpkg.com/petite-vue?module'
+    createApp({
+        pokemonName: '',
+        imageSrc: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+        findPokemon(name) {
+            fetch("https://pokeapi.co/api/v2/pokemon/" + name)
+                .then(response => (response.json()))
+                .then(data => {
+                    this.imageSrc = data.sprites.front_default
+                    console.log(this.imageSrc)
+                })
+        }
+    }).mount();
+</script>
