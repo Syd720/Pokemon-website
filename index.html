@@ -19,7 +19,7 @@
         pokemonName: '',
         imageSrc: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
         findPokemon(name) {
-            fetch("https://pokeapi.co/api/v2/pokemon/" + name)
+            fetch("https://pokeapi.co/api/v2/pokemon/" + name.toLowerCase())
                 .then(response => (response.json()))
                 .then(data => {
                     this.imageSrc = data.sprites.front_default
